@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Social App Home</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+        body {
+            background: linear-gradient(135deg, #f5f6fa 60%, #dff9fb 100%);
+            font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
+            padding: 2.5rem 2.5rem 2rem 2.5rem;
+            animation: fadeIn 1.2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        h1 {
+            color: #273c75;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .subtitle {
+            text-align: center;
+            color: #718093;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .actions a {
+            background: linear-gradient(90deg, #e17055 0%, #4078c0 100%);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+            transition: background 0.2s, transform 0.2s;
+            border: none;
+            outline: none;
+        }
+        .actions a:hover {
+            background: linear-gradient(90deg, #4078c0 0%, #e17055 100%);
+            transform: scale(1.05);
+        }
+        .features {
+            margin-bottom: 2rem;
+        }
+        .features h2 {
+            color: #353b48;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            background: #f1f2f6;
+            margin-bottom: 0.7rem;
+            padding: 0.7rem 1rem;
+            border-radius: 6px;
+            color: #353b48;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            animation: slideIn 0.8s ease;
+        }
+        .features li img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+            box-shadow: 0 1px 4px rgba(44,62,80,0.07);
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-30px);}
+            to { opacity: 1; transform: translateX(0);}
+        }
+        .feed-preview {
+            margin-top: 2rem;
+        }
+        .feed-preview h2 {
+            color: #353b48;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .post {
+            background: #f1f2f6;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            animation: popIn 0.7s ease;
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.95);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .post .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+            border: 2px solid #4078c0;
+            box-shadow: 0 1px 4px rgba(44,62,80,0.07);
+        }
+        .post-content {
+            flex: 1;
+        }
+        .post .author {
+            font-weight: bold;
+            color: #4078c0;
+            font-size: 1.1rem;
+        }
+        .post .content {
+            margin-top: 0.5rem;
+            color: #353b48;
+            font-size: 1rem;
+        }
+        .post .img-preview {
+            margin-top: 0.7rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(44,62,80,0.07);
+        }
+        .post .img-preview img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+        }
+        .post .actions {
+            margin-top: 0.7rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .post .actions button {
+            background: none;
+            border: none;
+            color: #e17055;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .post .actions button:hover {
+            color: #4078c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Social App!</h1>
+        <div class="subtitle">Connect, share, and discover with friends.</div>
+        <div class="actions">
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+        <div class="features">
+            <h2>Features</h2>
+            <ul>
+                <li><img src="https://img.icons8.com/fluency/48/user-male-circle.png" alt="profile">Create your own profile and share your bio</li>
+                <li><img src="https://img.icons8.com/fluency/48/camera.png" alt="camera">Upload and update your profile picture</li>
+                <li><img src="https://img.icons8.com/fluency/48/add-user-group-man-man.png" alt="follow">Follow other users and see their posts</li>
+                <li><img src="https://img.icons8.com/fluency/48/image.png" alt="share">Share photos and updates with your followers</li>
+                <li><img src="https://img.icons8.com/fluency/48/facebook-like.png" alt="like">Like and comment on posts</li>
+                <li><img src="https://img.icons8.com/fluency/48/lock-2.png" alt="secure">Secure login and registration</li>
+            </ul>
+        </div>
+        <div class="feed-preview">
+            <h2>Latest Posts</h2>
+            <div class="post">
+                <img class="avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="alice">
+                <div class="post-content">
+                    <span class="author">alice</span>
+                    <div class="content">Just joined the Social App! Excited to connect with everyone.</div>
+                    <div class="img-preview">
+                        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="post image">
+                    </div>
+                    <div class="actions">
+                        <button title="Like">❤️ 12</button>
+                        <button title="Comment">💬 3</button>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <img class="avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="bob">
+                <div class="post-content">
+                    <span class="author">bob</span>
+                    <div class="content">Check out my new profile picture! #newlook</div>
+                    <div class="img-preview">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="profile update">
+                    </div>
+                    <div class="actions">
+                        <button title="Like">❤️ 8</button>
+                        <button title="Comment">💬 1</button>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <img class="avatar" src="https://randomuser.me/api/portraits/women/65.jpg" alt="carol">
+                <div class="post-content">
+                    <span class="author">carol</span>
+                    <div class="content">Loving the new features. Follow me for more updates!</div>
+                    <div class="img-preview">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="feature">
+                    </div>
+                    <div class="actions">
+                        <button title="Like">❤️ 15</button>
+                        <button title="Comment">💬 5</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

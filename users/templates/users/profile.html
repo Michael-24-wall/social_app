@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ user_profile.user.username }}'s Profile</title>
+    <style>
+        body {
+            background: #f5f6fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .profile-container {
+            background: #fff;
+            padding: 2rem 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            width: 400px;
+            text-align: center;
+        }
+        .profile-picture {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid #4078c0;
+        }
+        h1 {
+            color: #273c75;
+            margin-bottom: 0.5rem;
+        }
+        .bio {
+            color: #353b48;
+            margin-bottom: 1.5rem;
+        }
+        .actions {
+            margin-top: 1.5rem;
+        }
+        .actions a {
+            color: #4078c0;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-size: 0.95rem;
+        }
+        .followers {
+            margin-top: 1rem;
+            color: #718093;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        {% if user_profile.profile_picture %}
+            <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+        {% else %}
+            <div class="profile-picture" style="background:#dcdde1;display:flex;align-items:center;justify-content:center;">
+                <span style="color:#718093;">No Image</span>
+            </div>
+        {% endif %}
+        <h1>{{ user_profile.user.username }}</h1>
+        <div class="bio">{{ user_profile.bio|default:"No bio provided." }}</div>
+        <div class="followers">
+            Followers: {{ user_profile.followers.count }} |
+            Following: {{ user_profile.following.count }}
+        </div>
+        <div class="actions">
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="#">Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>

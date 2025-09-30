@@ -1,0 +1,7 @@
+Django>=3.2,<4.0
+djangorestframework
+Pillow
+django-cors-headers
+django-allauth
+psycopg2-binary  # If using PostgreSQL as the database
+# Add any other dependencies as needed for your project

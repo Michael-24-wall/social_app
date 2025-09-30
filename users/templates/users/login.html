@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        /* Your existing CSS remains the same */
+        body {
+            background: #f5f6fa;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background: #fff;
+            padding: 2rem 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            width: 350px;
+        }
+        h1 {
+            text-align: center;
+            color: #273c75;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #353b48;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #dcdde1;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 0.8rem;
+            background: #273c75;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background 0.2s;
+        }
+        input[type="submit"]:hover {
+            background: #4078c0;
+        }
+        .links {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .links a {
+            color: #4078c0;
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-size: 0.95rem;
+        }
+        .error {
+            color: #e84118;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>User Login</h1>
+        {% if form.errors %}
+            <div class="error">
+                Invalid username or password.
+            </div>
+        {% endif %}
+        
+        {% if next %}
+            {% if user.is_authenticated %}
+                <div class="error">
+                    Your account doesn't have access to this page.
+                </div>
+            {% else %}
+                <div class="error">
+                    Please login to see this page.
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Username</label>
+                <input type="text" name="username" id="id_username" required autofocus>
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password</label>
+                <input type="password" name="password" id="id_password" required>
+            </div>
+            <input type="submit" value="Login">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+        <div class="links">
+            <a href="{% url 'register' %}">Create an account</a>
+            <a href="#">Forgot password?</a>
+        </div>
+    </div>
+</body>
+</html>
